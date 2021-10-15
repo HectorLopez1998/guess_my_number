@@ -8,8 +8,10 @@
 
 // document.querySelector('.guess').value = 10;
 // console.log(document.querySelector('.guess').value);
-const secretNumber = Math.trunc(Math.random() * 20 + 1)
+const secretNumber = Math.trunc(Math.random() * 20 + 1);
 console.log(secretNumber);
+let keepingScore = 20;
+
 
 // This will select the check btn and then return an element. Now in that element we can call the event addEventListener method.
 // The addEventListener method expects an event handler function as a second argument
@@ -23,8 +25,10 @@ document.querySelector('.check').addEventListener('click', function (){
   if(!guess) {
     document.querySelector('.message').textContent = '😒 Invalid Number';
   }else if(guess === secretNumber){
-    document.querySelector('.message').textContent = '🎉 Correct Answer!'
+    document.querySelector('.message').textContent = '🎉 Correct Answer!';
   }else if(guess !== secretNumber){
-    document.querySelector('.message').textContent = 'try again.'
+    document.querySelector('.message').textContent = 'try again.';
+    keepingScore = keepingScore - 1;
+    document.querySelector('.score').textContent = keepingScore;
   }
 })
