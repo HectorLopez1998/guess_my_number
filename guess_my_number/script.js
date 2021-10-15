@@ -9,7 +9,7 @@
 // document.querySelector('.guess').value = 10;
 // console.log(document.querySelector('.guess').value);
 // state variable, because it is part of the app state.
-const secretNumber = Math.trunc(Math.random() * 20 + 1);
+let secretNumber = Math.trunc(Math.random() * 20 + 1);
 console.log(secretNumber);
 let keepingScore = 20;
 
@@ -37,8 +37,22 @@ document.querySelector('.check').addEventListener('click', function (){
       keepingScore = keepingScore - 1;
       document.querySelector('.score').textContent = keepingScore;
     }else{
+      document.querySelector('body').style.backgroundColor = '#B22222';
       document.querySelector('.message').textContent = '❌You lose!';
       document.querySelector('.score').textContent = 0;
     }
   }
+})
+
+document.querySelector('.again').addEventListener('click', function (){
+   keepingScore = 20;
+   secretNumber = Math.trunc(Math.random() * 20 + 1);
+   document.querySelector('.score').textContent = keepingScore;
+   document.querySelector('.message').textContent = 'Start guessing...';
+   document.querySelector('.guess').value = '';
+   document.querySelector('.number').textContent = '?';
+   document.querySelector('body').style.backgroundColor = '#222';
+   document.querySelector('.number').style.width = '15rem';
+   console.log(secretNumber);
+  
 })
