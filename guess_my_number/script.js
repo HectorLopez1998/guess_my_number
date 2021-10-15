@@ -12,6 +12,8 @@
 let secretNumber = Math.trunc(Math.random() * 20 + 1);
 console.log(secretNumber);
 let keepingScore = 20;
+let highscore = 0;
+
 
 
 // This will select the check btn and then return an element. Now in that element we can call the event addEventListener method.
@@ -29,8 +31,14 @@ document.querySelector('.check').addEventListener('click', function (){
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem';
-
     document.querySelector('.message').textContent = '🎉 Correct Answer!';
+    if(keepingScore > highscore) {
+      highscore = keepingScore;
+      document.querySelector('.highscore').textContent = highscore;
+    }
+      
+    
+    
   }else if(guess !== secretNumber){
     if(keepingScore > 1){
       document.querySelector('.message').textContent = 'try again.';
@@ -42,6 +50,7 @@ document.querySelector('.check').addEventListener('click', function (){
       document.querySelector('.score').textContent = 0;
     }
   }
+ 
 })
 
 document.querySelector('.again').addEventListener('click', function (){
