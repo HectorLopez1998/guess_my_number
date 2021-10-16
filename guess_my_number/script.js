@@ -14,6 +14,9 @@ console.log(secretNumber);
 let keepingScore = 20;
 let highscore = 0;
 
+const displayMessage = function (message){
+  document.querySelector('.message').textContent = message;
+}
 
 
 // This will select the check btn and then return an element. Now in that element we can call the event addEventListener method.
@@ -26,12 +29,13 @@ document.querySelector('.check').addEventListener('click', function (){
   console.log(typeof guess, guess);
 
   if(!guess) {
-    document.querySelector('.message').textContent = '😒 Invalid Number';
+    displayMessage('😒 Invalid Number');
   }else if(guess === secretNumber){
     document.querySelector('body').style.backgroundColor = '#60b347';
     document.querySelector('.number').textContent = secretNumber;
     document.querySelector('.number').style.width = '30rem';
-    document.querySelector('.message').textContent = '🎉 Correct Answer!';
+    displayMessage('🎉 Correct Answer!');
+    //document.querySelector('.message').textContent = '🎉 Correct Answer!';
     if(keepingScore > highscore) {
       highscore = keepingScore;
       document.querySelector('.highscore').textContent = highscore;
@@ -41,27 +45,30 @@ document.querySelector('.check').addEventListener('click', function (){
     
   }else if(guess !== secretNumber){
     if(keepingScore > 1){
-      document.querySelector('.message').textContent = 'try again.';
+      displayMessage('try again.');
       keepingScore = keepingScore - 1;
       document.querySelector('.score').textContent = keepingScore;
     }else{
       document.querySelector('body').style.backgroundColor = '#B22222';
-      document.querySelector('.message').textContent = '❌You lose!';
+      displayMessage('❌You lose!');
       document.querySelector('.score').textContent = 0;
     }
   }
  
 })
-
-document.querySelector('.again').addEventListener('click', function (){
-   keepingScore = 20;
+const resetGame = function (){
+  keepingScore = 20;
    secretNumber = Math.trunc(Math.random() * 20 + 1);
    document.querySelector('.score').textContent = keepingScore;
-   document.querySelector('.message').textContent = 'Start guessing...';
+   displayMessage('Start guessing...');
    document.querySelector('.guess').value = '';
    document.querySelector('.number').textContent = '?';
    document.querySelector('body').style.backgroundColor = '#222';
    document.querySelector('.number').style.width = '15rem';
    console.log(secretNumber);
+}
+
+document.querySelector('.again').addEventListener('click', function (){
+   resetGame()
   
 })
